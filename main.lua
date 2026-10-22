@@ -1,3 +1,4 @@
+local TeamCheck = true -- change if needed
 local Camera = workspace.CurrentCamera
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -39,10 +40,10 @@ end
 
 local function getClosestPlayer()
     local Closest
-    local DistanceToMouse = math.huge
+    local DistanceToMouse = fov_circle and fov_circle.Visible and fov_circle.Radius or math.huge
     for _, Player in next, GetPlayers(Players) do
         if Player == LocalPlayer then continue end
-        if Player.Team == LocalPlayer.Team then continue end
+        if TeamCheck and Player.Team == LocalPlayer.Team then continue end
 
         local Character = Player.Character
         if not Character then continue end
